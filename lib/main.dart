@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'story_brain.dart';
 
 void main() => runApp(Destiny());
 
@@ -11,11 +12,11 @@ class Destiny extends StatelessWidget {
   }
 }
 
+StoryBrain storyBrain = StoryBrain();
+
 class StoryPage extends StatefulWidget {
   _StoryPageState createState() => _StoryPageState();
 }
-
-StoryBrain storyBrain = StoryBrain();
 
 class _StoryPageState extends State<StoryPage> {
   @override
@@ -25,7 +26,7 @@ class _StoryPageState extends State<StoryPage> {
         padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/thumbnail.png"),
+            image: AssetImage("images/img.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -38,7 +39,7 @@ class _StoryPageState extends State<StoryPage> {
                 flex: 12,
                 child: Center(
                   child: Text(
-                    storyBrain.getStoryTitle(),
+                    storyBrain.getStory(),
                     style: TextStyle(
                       fontSize: 25.0,
                     ),
@@ -57,7 +58,7 @@ class _StoryPageState extends State<StoryPage> {
                     backgroundColor: Colors.red,
                   ),
                   child: Text(
-                    storyBrain.getChoiceprimeiro(),
+                    storyBrain.getChoice1(),
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.white,
@@ -71,7 +72,7 @@ class _StoryPageState extends State<StoryPage> {
               Expanded(
                 flex: 2,
                 child: Visibility(
-                  visible: storyBrain.isChoicesegundoAvailable(),
+                  visible: storyBrain.isChoice2Avaliable(),
                   child: TextButton(
                     onPressed: () {
                       setState(() {
@@ -82,7 +83,7 @@ class _StoryPageState extends State<StoryPage> {
                       backgroundColor: Colors.blue,
                     ),
                     child: Text(
-                      storyBrain.getChoicesegundo(),
+                      storyBrain.getChoice2(),
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,

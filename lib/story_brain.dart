@@ -1,7 +1,8 @@
-StoryBrain
+import 'story.dart';
 
 class StoryBrain {
-  final List<Story> _storyData = [
+
+  List<Story> _storyData = [
     Story(
         'Seu carro estourou um pneu numa estrada sinuosa, no meio do nada, sem sinal de celular. Você decidiu procurar carona. Você ouve o barulho de uma caminhonete velha para próxima de você. Um homem com um chapelão e olhos assombrosos abre a porta do carona para você e pergunta: "Precisa de uma carona, garoto?".',
         'Eu vou aceitar. Agradeço a ajuda!',
@@ -28,41 +29,54 @@ class StoryBrain {
         '')
   ];
 
-  int _storyNumber = 0;
+  int _currentStory = 0;
 
-  String getStoryTitle() {
-    return _storyData[_storyNumber].storyTitle;
-  }
-
-  String getChoiceprimeiro() {
-    return _storyData[_storyNumber].choice1;
-  }
-
-  String getChoicesegundo() {
-    return _storyData[_storyNumber].choice2;
+  void nextStory(int choice) {
+    if (_currentStory == 0) {
+      if (choice == 1) {
+        _currentStory = 2;
+      } else {
+        _currentStory = 1;
+      }
+    } else if (_currentStory == 1) {
+      if (choice == 1) {
+        _currentStory = 2;
+      } else {
+        _currentStory = 3;
+      }
+    } else if (_currentStory == 2) {
+      if (choice == 1) {
+        _currentStory = 5;
+      } else {
+        _currentStory = 4;
+      }
+    } else {
+      restart();
+    }
   }
 
   void restart() {
-    _storyNumber = 0;
+    _currentStory = 0;
   }
 
-  isChoicesegundoAvailable() {
-    if (_storyNumber < 3) {
+  String getStory() {
+    return _storyData[_currentStory].storyTitle;
+  }
+
+  String getChoice1() {
+    return _storyData[_currentStory].choice1;
+  }
+
+  String getChoice2() {
+    return _storyData[_currentStory].choice2;
+  }
+
+  bool isChoice2Avaliable() {
+    if(_currentStory < 3) {
       return true;
     } else {
       return false;
     }
   }
-
-  void nextStory(int choiceNumber) {
-    if (_storyNumber == 0) {
-      _storyNumber = choiceNumber == 1 ? 2 : 1;
-    } else if (_storyNumber == 1) {
-      _storyNumber = choiceNumber == 1 ? 2 : 3;
-    } else if (_storyNumber == 2) {
-      _storyNumber = choiceNumber == 1 ? 5 : 4;
-    } else {
-      restart();
-    }
-  }
 }
+
