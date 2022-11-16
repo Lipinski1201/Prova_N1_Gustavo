@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gustavo_n1">
-   <application
-        android:label="gustavo_n1"
+    <application
+        android:icon="@mipmap/ic_launcher"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:label="PassesBox"
         <activity
             android:name=".MainActivity"
             android:exported="true"
